@@ -1,0 +1,16 @@
+.Tabs {
+    display: flex;
+    max-width: 300px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.Tabs a {
+    text-decoration: none;
+    color: black;
+}
+
+.Tabs a.active {
+    background-color: rgb(209, 209, 209);
+}

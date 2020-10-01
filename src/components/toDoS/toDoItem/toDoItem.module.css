@@ -1,0 +1,13 @@
+.ToDoItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.Remove {
+    cursor: pointer;
+    margin-left: 10px;
+    border: 1px solid rgb(253, 185, 185);
+    padding-left: 5px;
+    padding-right: 5px;
+}
