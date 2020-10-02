@@ -1,21 +1,44 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import ToDoS from "./components/toDoS/toDoS";
 import Layout from "./containers/layout/layout";
 
-function App() {
+function App(props) {
+  const searchedTasks = props.tasks.filter((item) => {
+    return item.task.toLowerCase().includes(props.usersInputValue);
+  });
   return (
     <div className="App">
       <Layout>
         <Switch>
-          <Route path="/done" render={() => <ToDoS done />} />
-          <Route path="/active" render={() => <ToDoS active />} />
-          <Route path="/all" render={() => <ToDoS all />} />
+          <Route
+            path="/done"
+            render={() => <ToDoS searchedTasks={searchedTasks} done />}
+          />
+          <Route
+            path="/active"
+            render={() => <ToDoS searchedTasks={searchedTasks} active />}
+          />
+          <Route
+            path="/all"
+            render={() => <ToDoS searchedTasks={searchedTasks} all />}
+          />
         </Switch>
       </Layout>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    usersInputValue: state.toDo.usersInputValue,
+    tasks: state.toDo.tasks,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

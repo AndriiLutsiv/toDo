@@ -4,6 +4,16 @@
     margin-bottom: 15px;
 }
 
+.Task {
+    opacity: 1;
+    text-decoration: none;
+}
+
+.Done {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
 .Remove {
     cursor: pointer;
     margin-left: 10px;
