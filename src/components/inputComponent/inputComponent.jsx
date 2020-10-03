@@ -16,6 +16,7 @@ const InputComponent = (props) => {
       active: true,
     };
     props.addTask(newTask);
+    sessionStorage.setItem(newTask.id, JSON.stringify(newTask));
     props.userTypingActionCreator("");
   };
 

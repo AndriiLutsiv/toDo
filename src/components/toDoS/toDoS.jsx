@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ToDoItem from "./toDoItem/toDoItem";
 const ToDoS = (props) => {
-  console.log(props);
-
   let item = null;
   if (props.all) {
     item = props.searchedTasks.map((item) => {

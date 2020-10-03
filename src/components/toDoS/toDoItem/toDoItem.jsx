@@ -9,6 +9,12 @@ const ToDoItem = (props) => {
 
   const toggleMarkHandler = () => {
     props.toggleMark(props.id);
+
+    let toggledTask = props.tasks.find((task) => {
+      return task.id === props.id;
+    });
+    toggledTask.active = !toggledTask.active;
+    sessionStorage.setItem(props.id, JSON.stringify(toggledTask));
   };
 
   let taskStyle = [classes.Task];
@@ -32,7 +38,9 @@ const ToDoItem = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    tasks: state.toDo.tasks,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
