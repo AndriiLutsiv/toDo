@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 const ToDoItem = (props) => {
   const removeHandler = () => {
     props.removeTask(props.id);
+    sessionStorage.removeItem(props.id);
   };
 
   const toggleMarkHandler = () => {
@@ -30,9 +31,9 @@ const ToDoItem = (props) => {
           type="checkbox"
         />
       </div>
-      <div className={taskStyle.join(" ")}>{props.task}</div>
+      <div className={taskStyle.join(" ")} onClick={toggleMarkHandler}>{props.task}</div>
       <div onClick={removeHandler} className={classes.Remove}>
-        x
+      &#10006;
       </div>
     </div>
   );

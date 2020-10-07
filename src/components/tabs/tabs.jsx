@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 const Tabs = (props) => {
   return (
     <div className={classes.Tabs}>
-      <NavLink activeClassName={classes.active} to="/all">
+      <NavLink exact activeClassName={classes.active} to="/">
         <AllTab />
       </NavLink>
       <NavLink activeClassName={classes.active} to="/active">

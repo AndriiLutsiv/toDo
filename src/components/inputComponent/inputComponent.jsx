@@ -24,10 +24,11 @@ const InputComponent = (props) => {
     <div className={classes.InputComponent}>
       <input
         value={props.usersInputValue}
+        placeholder={'Search for task'}
         onChange={userTypingHandler}
         type="text"
       />
-      <div onClick={addTaskHandler}>
+      <div className={classes.Button} onClick={addTaskHandler}>
         <button disabled={props.usersInputValue === ""}>+</button>
       </div>
     </div>
