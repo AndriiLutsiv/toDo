@@ -8,36 +8,21 @@ import * as AC from "../src/redux/actions";
 
 
 const  App = (props) => {
-  useEffect(() => {
+  useEffect(() => {     //this one gets tasks from session storage and sets them again,  so we are safe while page is refreshed at least in scope of one browser session
     let keys = Object.keys(sessionStorage);
     keys.forEach((element) => {
       let newTask = sessionStorage.getItem(element);
       props.addTask(JSON.parse(newTask));
-      console.log('a');
     });
   }, [])
  
-    const searchedTasks = props.tasks.filter((item) => {
-      return item.task.toLowerCase().includes(props.usersInputValue);
-    });
     return (
       <div className="App">
-        
         <Layout>
           <Switch>
-            <Route
-              path="/done"
-              render={() => <ToDoS searchedTasks={searchedTasks} done />}
-            />
-            <Route
-              path="/active"
-              render={() => <ToDoS searchedTasks={searchedTasks} active />}
-            />
-            <Route
-              exact
-              path="/"
-              render={() => <ToDoS searchedTasks={searchedTasks} all />}
-            />
+            <Route path="/done" render={() => <ToDoS tasks={props.tasks} done />} />
+            <Route path="/active" render={() => <ToDoS tasks={props.tasks} active />} />
+            <Route exact path="/" render={() => <ToDoS tasks={props.tasks} all />} />
           </Switch>
         </Layout>
       </div>

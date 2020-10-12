@@ -2,61 +2,52 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ToDoItem from "./toDoItem/toDoItem";
+
+//below we check which props are coming to us so the proper items are rendered respectively
 const ToDoS = (props) => {
-  let item = null;
-  if (props.all) {
-    item = props.searchedTasks.map((item) => {
-      return (
-        <ToDoItem
-          key={item.id}
-          task={item.task}
-          active={item.active}
-          id={item.id}
-        />
-      );
-    });
-  } else if (props.active) {
-    let activeTasks = props.searchedTasks.filter((item) => {
-      return item.active === true;
-    });
+    let item = null;
 
-    item = activeTasks.map((item) => {
-      return (
-        <ToDoItem
-          key={item.id}
-          task={item.task}
-          active={item.active}
-          id={item.id}
-        />
-      );
-    });
-  } else if (props.done) {
-    let doneItems = props.searchedTasks.filter((item) => {
-      return item.active === false;
-    });
+    if (props.all) {                                 //in this case we map throughout all the items and render ToDoItem for every element
+        item = props.tasks.map((item) => {
+            return (
+                <ToDoItem
+                    key={item.id}
+                    task={item.task}
+                    active={item.active}
+                    id={item.id}
+                />
+            );
+        });
+    } else if (props.active) {                       
+        let activeTasks = props.tasks.filter((item) => {   //in this case we filter and recieve those items which have active property equaled to true 
+            return item.active === true;
+        });
+        item = activeTasks.map((item) => {
+            return (
+                <ToDoItem
+                    key={item.id}
+                    task={item.task}
+                    active={item.active}
+                    id={item.id}
+                />
+            );
+        });
+    } else if (props.done) {
+        let doneItems = props.tasks.filter((item) => {  //in this case we filter and recieve those items which have active property equaled to false 
+            return item.active === false;
+        });
 
-    item = doneItems.map((item) => {
-      return (
-        <ToDoItem
-          key={item.id}
-          task={item.task}
-          active={item.active}
-          id={item.id}
-        />
-      );
-    });
-  }
-  return <>{item}</>;
+        item = doneItems.map((item) => {
+            return (
+                <ToDoItem
+                    key={item.id}
+                    task={item.task}
+                    active={item.active}
+                    id={item.id}
+                />
+            );
+        });
+    }
+    return <>{item}</>;   
 };
-
-const mapStateToProps = (state) => {
-  return {
-    usersInputValue: state.toDo.usersInputValue,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ToDoS));
+export default ToDoS;
