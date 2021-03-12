@@ -15,7 +15,7 @@ const  App = (props) => {
       props.addTask(JSON.parse(newTask));
     });
   }, [])
- 
+ //comment addes//
     return (
       <div className="App">
         <Layout>
